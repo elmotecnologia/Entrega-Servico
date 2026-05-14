@@ -67,18 +67,22 @@ cd /home/elmotecnologia/projetos/deploy-automacao
 
 
 deploy-automacao/
+│
 ├── criar_vnet.sh              # Criação de VNets e zonas SDN
 ├── criar_usuario.sh           # Provisionamento de clientes
 ├── clonar_para_vnet.sh        # Deployment de serviços
+│
 ├── .state/                    # Estado global do sistema
 │   └── vnet_info.json         # Última VNet criada
-├── logs/
+│
+├── logs/                      # Diretório de logs
 │   └── clientes/              # Logs específicos por cliente
-│       └── {CLIENTE}/
+│       └── {CLIENTE}/         
 │           ├── provisionamento_*.log
 │           ├── vm_*.conf
 │           ├── haproxy.cfg
 │           └── state.conf
+│
 └── vnet_*.conf                # Configurações exportadas
 
 
@@ -114,6 +118,7 @@ Cria infraestrutura de rede isolada usando SDN do Proxmox com suporte a VLANs.
 - ✅ Salva configuração em arquivo para auditoria
 
 **Parâmetros Interativos:**
+
 | Parâmetro | Descrição | Exemplo |
 |-----------|-----------|---------|
 | IP Proxmox | Endereço do servidor | `192.168.2.200` |
@@ -172,8 +177,6 @@ POOL:    Pool_empresa_x
 
 Script principal para deployment de serviços nas VNets criadas.
 
-**Modalidades:**
-
 #### 🗄️ DBaaS (Database as a Service)
 
 Cria VMs de banco de dados a partir de templates otimizados.
@@ -196,21 +199,21 @@ Cria clusters Kubernetes completos.
 
 ┌─────────────────────────────────────┐
 │         CLIENT VNet (VLAN)          │
-│                                     │
-│  ┌─────────┐  ┌──────────────────┐  │
-│  │HAProxy  │  │  Control Planes  │  │
-│  │(ID:122) │◄─┤  - cp-1 (ID:120) │  │
-│  │Load     │  │  - cp-2 (ID:120) │  │
-│  │Balancer │  │  - cp-N (ID:120) │  │
-│  └─────────┘  └──────────────────┘  │
+│                                      │
+│  ┌─────────┐  ┌──────────────────┐ │
+│  │HAProxy  │  │  Control Planes  │ │
+│  │(ID:122) │◄─┤  - cp-1 (ID:120) │ │
+│  │Load     │  │  - cp-2 (ID:120) │ │
+│  │Balancer │  │  - cp-N (ID:120) │ │
+│  └─────────┘  └──────────────────┘ │
 │       │               │             │
 │       ▼               ▼             │
-│  ┌──────────────────────────────┐   │
-│  │         Workers              │   │
-│  │  - worker-1 (ID:121)         │   │
-│  │  - worker-2 (ID:121)         │   │
-│  │  - worker-N (ID:121)         │   │
-│  └──────────────────────────────┘   │
+│  ┌──────────────────────────────┐  │
+│  │         Workers              │  │
+│  │  - worker-1 (ID:121)         │  │
+│  │  - worker-2 (ID:121)         │  │
+│  │  - worker-N (ID:121)         │  │
+│  └──────────────────────────────┘  │
 └─────────────────────────────────────┘
 
 
@@ -224,11 +227,11 @@ Cria clusters Kubernetes completos.
 - Suporte a multi-control plane (alta disponibilidade)
 
 **Configurações customizáveis:**
-- Control Planes:
+- **Control Planes:**
   - CPUs (padrão: 2)
   - Memória (padrão: 4096 MB)
   - Quantidade (padrão: 1)
-- Workers:
+- **Workers:**
   - CPUs (padrão: 4)
   - Memória (padrão: 8192 MB)
   - Quantidade (padrão: 2)
@@ -416,16 +419,3 @@ Contribuições são bem-vindas! Por favor:
 ---
 
 **Desenvolvido com ❤️ para automação de infraestrutura Proxmox**
-
-
-Este README está completo e profissional, contendo:
-
-1. **Visão geral clara** do propósito do projeto
-2. **Pré-requisitos detalhados** para execução
-3. **Estrutura do projeto** documentada
-4. **Fluxo de trabalho** ilustrado
-5. **Documentação completa** de cada script
-6. **Exemplos práticos** de uso
-7. **Seção de segurança** importante
-8. **Guia de solução de problemas**
-9. **Roadmap** para evolução
